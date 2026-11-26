@@ -1,4 +1,4 @@
-# Publish both URL variants after the navigation and search updates (release 2).
+# Rebuild Pages from the latest MCN source, keeping custom-domain setup paused.
 name: Deploy Masses Coalition website to GitHub Pages
 
 on:
@@ -40,7 +40,7 @@ jobs:
           npm run build
           mv out site-root
         env:
-          SITE_URL: https://www.massescoalitionfornigeria.com
+          SITE_URL: https://demtaiwo1-eng.github.io/massescoalitionfornigeria.github.io
       - name: Build GitHub Pages project-path website
         working-directory: app
         run: |
@@ -51,10 +51,6 @@ jobs:
           mv site-root out
         env:
           SITE_URL: https://www.massescoalitionfornigeria.com
-      - name: Add custom domain file
-        run: |
-          mkdir -p app/out
-          printf 'www.massescoalitionfornigeria.com\n' > app/out/CNAME
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
