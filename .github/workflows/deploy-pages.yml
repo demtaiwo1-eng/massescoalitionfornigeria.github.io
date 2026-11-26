@@ -1,4 +1,4 @@
-# Rebuild the Pages artifact after navigation, routing and global-style repairs in the source repository.
+# Rebuild root-domain and project-path variants after routing repairs.
 name: Deploy Masses Coalition website to GitHub Pages
 
 on:
