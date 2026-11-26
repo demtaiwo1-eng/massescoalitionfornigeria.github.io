@@ -1,4 +1,4 @@
-# Rebuild both URL variants after the navigation and search updates.
+# Publish both URL variants after the navigation and search updates (release 2).
 name: Deploy Masses Coalition website to GitHub Pages
 
 on:
