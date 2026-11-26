@@ -1,4 +1,4 @@
-# Rebuild Pages from the latest MCN source, keeping custom-domain setup paused.
+# Rebuild Pages with the secure newsroom dashboard and current source revision.
 name: Deploy Masses Coalition website to GitHub Pages
 
 on:
