@@ -9,10 +9,6 @@ on:
         description: External website URL to open in Chromium
         required: false
         default: https://demtaiwo1-eng.github.io/massescoalitionfornigeria.github.io/
-  workflow_run:
-    workflows: ["Deploy Masses Coalition website to GitHub Pages"]
-    types: [completed]
-    branches: [main]
 
 permissions:
   contents: read
@@ -23,7 +19,7 @@ concurrency:
 
 jobs:
   browser-smoke-test:
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
