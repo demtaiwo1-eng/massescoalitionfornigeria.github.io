@@ -1,4 +1,4 @@
-# Publish updated public newsroom, article search and cross-site secure sign-in workflows.
+# Publish verified base-path-safe navigation and full public/newsroom workflows.
 name: Deploy Masses Coalition website to GitHub Pages
 
 on:
@@ -44,7 +44,7 @@ jobs:
       - name: Build GitHub Pages project-path website
         working-directory: app
         run: |
-          NEXT_BASE_PATH=/massescoalitionfornigeria.github.io npm run build
+          NEXT_PUBLIC_BASE_PATH=/massescoalitionfornigeria.github.io NEXT_BASE_PATH=/massescoalitionfornigeria.github.io npm run build
           mkdir -p site-root/massescoalitionfornigeria.github.io
           cp -a out/. site-root/massescoalitionfornigeria.github.io/
           rm -rf out
