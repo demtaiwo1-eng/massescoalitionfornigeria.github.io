@@ -1,4 +1,4 @@
-# Build and validate the latest MCN source after newsroom dashboard syntax correction.
+# Build and validate article revisions, image media and scheduled publication controls.
 name: Deploy Masses Coalition website to GitHub Pages
 
 on:
