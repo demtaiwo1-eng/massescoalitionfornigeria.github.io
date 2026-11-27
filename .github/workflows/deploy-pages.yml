@@ -1,4 +1,4 @@
-# Build the complete MCN public site after final review-action route correction.
+# Build the latest MCN newsroom with the story-preview editor and all 19 subpages.
 name: Deploy Masses Coalition website to GitHub Pages
 
 on:
