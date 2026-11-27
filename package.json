@@ -1,0 +1,12 @@
+{
+  "name": "masses-coalition-pages-browser-tests",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Selenium browser smoke tests for the Masses Coalition public website.",
+  "scripts": {
+    "test:browser": "node tests/selenium/external-url.smoke.cjs"
+  },
+  "devDependencies": {
+    "selenium-webdriver": "^4.54.0"
+  }
+}
