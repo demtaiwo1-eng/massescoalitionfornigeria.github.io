@@ -1,4 +1,4 @@
-# Project-site build with verified internal navigation and active canonical URL metadata.
+# Project-site build with 19 operational pages and no custom-domain binding.
 name: Deploy Masses Coalition website to GitHub Pages
 
 on:
