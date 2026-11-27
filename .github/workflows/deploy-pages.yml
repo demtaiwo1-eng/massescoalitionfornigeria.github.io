@@ -37,7 +37,7 @@ jobs:
       - name: Build root-domain website
         working-directory: app
         run: |
-          printf 'export const siteBasePath = "";\\n' > src/lib/base-path.ts
+          printf 'export const siteBasePath = "";\n' > src/lib/base-path.ts
           npm run build
           mv out site-root
         env:
@@ -45,7 +45,7 @@ jobs:
       - name: Build GitHub Pages project-path website
         working-directory: app
         run: |
-          printf 'export const siteBasePath = "/massescoalitionfornigeria.github.io";\\n' > src/lib/base-path.ts
+          printf 'export const siteBasePath = "/massescoalitionfornigeria.github.io";\n' > src/lib/base-path.ts
           NEXT_PUBLIC_BASE_PATH=/massescoalitionfornigeria.github.io NEXT_BASE_PATH=/massescoalitionfornigeria.github.io npm run build
           mkdir -p site-root/massescoalitionfornigeria.github.io
           cp -a out/. site-root/massescoalitionfornigeria.github.io/
