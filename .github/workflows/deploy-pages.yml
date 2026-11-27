@@ -1,4 +1,4 @@
-# Build and validate article revisions, image media and scheduled publication controls.
+# Build the complete 19-page MCN site with role-based publishing and advanced-access content.
 name: Deploy Masses Coalition website to GitHub Pages
 
 on:
