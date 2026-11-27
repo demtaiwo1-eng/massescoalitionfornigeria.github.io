@@ -1,0 +1,41 @@
+const assert = require('node:assert/strict');
+const { Builder, Browser } = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
+
+const targetUrl = process.env.EXTERNAL_TEST_URL || 'https://www.massescoalitionfornigeria.com';
+
+async function main() {
+  const parsed = new URL(targetUrl);
+  assert.ok(['http:', 'https:'].includes(parsed.protocol), 'EXTERNAL_TEST_URL must be HTTP(S)');
+
+  const options = new chrome.Options()
+    .addArguments('--headless=new', '--no-sandbox', '--disable-dev-shm-usage', '--window-size=1440,1000');
+
+  let driver;
+  try {
+    driver = await new Builder()
+      .forBrowser(Browser.CHROME)
+      .setChromeOptions(options)
+      .build();
+
+    await driver.manage().setTimeouts({ pageLoad: 60000, script: 30000, implicit: 0 });
+    await driver.get(targetUrl);
+
+    const title = await driver.getTitle();
+    const currentUrl = await driver.getCurrentUrl();
+    const readyState = await driver.executeScript('return document.readyState');
+
+    assert.ok(title && title.trim().length > 0, 'The external page must have a non-empty title');
+    assert.equal(readyState, 'complete', 'The external page must finish loading');
+    assert.ok(currentUrl.startsWith('http'), 'The browser must remain on an HTTP(S) URL');
+
+    console.log(JSON.stringify({ status: 'passed', targetUrl, currentUrl, title, readyState }, null, 2));
+  } finally {
+    if (driver) await driver.quit();
+  }
+}
+
+main().catch((error) => {
+  console.error('Selenium external URL smoke test failed:', error);
+  process.exitCode = 1;
+});
