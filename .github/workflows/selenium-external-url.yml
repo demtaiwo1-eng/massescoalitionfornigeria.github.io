@@ -6,7 +6,7 @@ on:
       external_url:
         description: External website URL to open in Chromium
         required: false
-        default: https://www.massescoalitionfornigeria.com
+        default: https://demtaiwo1-eng.github.io/massescoalitionfornigeria.github.io/
   workflow_run:
     workflows: ["Deploy Masses Coalition website to GitHub Pages"]
     types: [completed]
@@ -49,4 +49,6 @@ jobs:
       - name: Open and verify external URL with Selenium
         run: npm run test:browser
         env:
-          EXTERNAL_TEST_URL: ${{ github.event.inputs.external_url || 'https://www.massescoalitionfornigeria.com' }}
+          EXTERNAL_TEST_URL: ${{ github.event.inputs.external_url || 'https://demtaiwo1-eng.github.io/massescoalitionfornigeria.github.io/' }}
+          CHROME_BINARY: ${{ steps.setup-chrome.outputs.chrome-path }}
+          CHROMEDRIVER_PATH: ${{ steps.setup-chrome.outputs.chromedriver-path }}
