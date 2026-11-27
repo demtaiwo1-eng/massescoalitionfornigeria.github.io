@@ -38,7 +38,7 @@ jobs:
         working-directory: app
         run: |
           printf 'export const siteBasePath = "";\n' > src/lib/base-path.ts
-          npm run build
+          NEXT_DIST_DIR=.next-root npm run build
           mv out site-root
         env:
           SITE_URL: https://demtaiwo1-eng.github.io/massescoalitionfornigeria.github.io
@@ -47,7 +47,7 @@ jobs:
         run: |
           printf 'export const siteBasePath = "/massescoalitionfornigeria.github.io";\n' > src/lib/base-path.ts
           cat src/lib/base-path.ts
-          NEXT_PUBLIC_BASE_PATH=/massescoalitionfornigeria.github.io NEXT_BASE_PATH=/massescoalitionfornigeria.github.io npm run build
+          NEXT_DIST_DIR=.next-project NEXT_PUBLIC_BASE_PATH=/massescoalitionfornigeria.github.io NEXT_BASE_PATH=/massescoalitionfornigeria.github.io npm run build
           grep -o 'href="/massescoalitionfornigeria.github.io[^"]*"' out/index.html | head -n 8
           mkdir -p site-root/massescoalitionfornigeria.github.io
           cp -a out/. site-root/massescoalitionfornigeria.github.io/
