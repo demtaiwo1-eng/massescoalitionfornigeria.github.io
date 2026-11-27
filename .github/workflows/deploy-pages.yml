@@ -1,4 +1,4 @@
-# Publish final project-path-aware anchors and isolated static builds.
+# GitHub Pages project-site build. When the custom domain is activated, switch NEXT_BASE_PATH to empty.
 name: Deploy Masses Coalition website to GitHub Pages
 
 on:
@@ -34,31 +34,16 @@ jobs:
       - name: Install dependencies
         working-directory: app
         run: npm install
-      - name: Build root-domain website
+      - name: Build project-site website
         working-directory: app
         run: |
-          printf 'export const siteBasePath = "";\n' > src/lib/base-path.ts
           rm -rf .next out
-          npm run build
-          mv out site-root
-        env:
-          SITE_URL: https://demtaiwo1-eng.github.io/massescoalitionfornigeria.github.io
-      - name: Build GitHub Pages project-path website
-        working-directory: app
-        run: |
           printf 'export const siteBasePath = "/massescoalitionfornigeria.github.io";\n' > src/lib/base-path.ts
-          cat src/lib/base-path.ts
-          rm -rf .next out
           NEXT_PUBLIC_BASE_PATH=/massescoalitionfornigeria.github.io NEXT_BASE_PATH=/massescoalitionfornigeria.github.io npm run build
           grep -o 'href="/massescoalitionfornigeria.github.io[^"]*"' out/index.html | head -n 8
-          mkdir -p site-root/massescoalitionfornigeria.github.io
-          cp -a out/. site-root/massescoalitionfornigeria.github.io/
-          rm -rf out
-          mv site-root out
+          printf 'www.massescoalitionfornigeria.com\n' > out/CNAME
         env:
-          SITE_URL: https://www.massescoalitionfornigeria.com
-      - name: Preserve custom domain file
-        run: printf 'www.massescoalitionfornigeria.com\n' > app/out/CNAME
+          SITE_URL: https://demtaiwo1-eng.github.io/massescoalitionfornigeria.github.io
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
