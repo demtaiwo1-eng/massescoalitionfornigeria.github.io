@@ -1,4 +1,4 @@
-# Publish final route collision fix and base-path-safe internal navigation.
+# Publish final project-path-aware anchors and isolated static builds.
 name: Deploy Masses Coalition website to GitHub Pages
 
 on:
