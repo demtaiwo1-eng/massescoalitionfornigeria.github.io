@@ -1,5 +1,5 @@
 const assert = require('node:assert/strict');
-const { Builder, Browser } = require('selenium-webdriver');
+const { Builder, Browser, By } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 
 const targetUrl = process.env.EXTERNAL_TEST_URL || 'https://demtaiwo1-eng.github.io/massescoalitionfornigeria.github.io/';
@@ -42,9 +42,10 @@ async function main() {
     assert.deepEqual(brokenLinks, [], 'Internal links must stay under the GitHub Pages project path');
 
     await driver.get(new URL(expectedBase + '/contact/', new URL(targetUrl).origin).href);
-    assert.ok((await driver.findElement({ css: 'form.contact-form' }).isDisplayed()), 'The contact form must render');
+    const contactForm = await driver.findElement(By.css('form.contact-form'));
+    assert.equal(await contactForm.isDisplayed(), true, 'The contact form must render');
     await driver.get(new URL(expectedBase + '/newsroom/sign-in/', new URL(targetUrl).origin).href);
-    assert.match(await driver.findElement({ css: 'h1' }).getText(), /Newsroom access/i, 'The newsroom sign-in page must render');
+    assert.match(await driver.findElement(By.css('h1')).getText(), /Newsroom access/i, 'The newsroom sign-in page must render');
 
     console.log(JSON.stringify({ status: 'passed', targetUrl, currentUrl, title, readyState, checkedInternalLinks: internalLinks.length }, null, 2));
   } finally {
