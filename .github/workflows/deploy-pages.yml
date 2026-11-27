@@ -1,4 +1,4 @@
-# Project-site build with 19 operational pages and no custom-domain binding.
+# Build and publish the full MCN public site plus 19 operational subpages.
 name: Deploy Masses Coalition website to GitHub Pages
 
 on:
