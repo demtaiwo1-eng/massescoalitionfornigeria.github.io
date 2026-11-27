@@ -1,4 +1,4 @@
-# Build the complete 19-page MCN site with role-based publishing and advanced-access content.
+# Build the complete MCN public site after final review-action route correction.
 name: Deploy Masses Coalition website to GitHub Pages
 
 on:
