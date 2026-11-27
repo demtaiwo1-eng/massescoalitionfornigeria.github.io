@@ -1,4 +1,4 @@
-# GitHub Pages project-site build. When the custom domain is activated, switch NEXT_BASE_PATH to empty.
+# Project-site build with verified internal navigation and active canonical URL metadata.
 name: Deploy Masses Coalition website to GitHub Pages
 
 on:
