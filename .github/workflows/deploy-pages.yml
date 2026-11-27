@@ -52,7 +52,7 @@ jobs:
         env:
           SITE_URL: https://www.massescoalitionfornigeria.com
       - name: Preserve custom domain file
-        run: cp CNAME app/out/CNAME
+        run: printf 'www.massescoalitionfornigeria.com\n' > app/out/CNAME
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
