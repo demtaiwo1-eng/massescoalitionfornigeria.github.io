@@ -1,4 +1,4 @@
-# Rebuild Pages with the secure newsroom dashboard and current source revision.
+# Publish public newsroom, story, search, contact and access workflows.
 name: Deploy Masses Coalition website to GitHub Pages
 
 on:
