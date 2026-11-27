@@ -2,7 +2,7 @@ const assert = require('node:assert/strict');
 const { Builder, Browser } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 
-const targetUrl = process.env.EXTERNAL_TEST_URL || 'https://www.massescoalitionfornigeria.com';
+const targetUrl = process.env.EXTERNAL_TEST_URL || 'https://demtaiwo1-eng.github.io/massescoalitionfornigeria.github.io/';
 
 async function main() {
   const parsed = new URL(targetUrl);
@@ -10,13 +10,13 @@ async function main() {
 
   const options = new chrome.Options()
     .addArguments('--headless=new', '--no-sandbox', '--disable-dev-shm-usage', '--window-size=1440,1000');
+  if (process.env.CHROME_BINARY) options.setChromeBinaryPath(process.env.CHROME_BINARY);
 
   let driver;
   try {
-    driver = await new Builder()
-      .forBrowser(Browser.CHROME)
-      .setChromeOptions(options)
-      .build();
+    const builder = new Builder().forBrowser(Browser.CHROME).setChromeOptions(options);
+    if (process.env.CHROMEDRIVER_PATH) builder.setChromeService(new chrome.ServiceBuilder(process.env.CHROMEDRIVER_PATH));
+    driver = await builder.build();
 
     await driver.manage().setTimeouts({ pageLoad: 60000, script: 30000, implicit: 0 });
     await driver.get(targetUrl);
