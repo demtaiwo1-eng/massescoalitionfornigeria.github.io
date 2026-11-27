@@ -1,4 +1,4 @@
-# Build the latest MCN newsroom with all 19 public routes, self-contained global CSS and the current newsroom integration.
+# Build the latest MCN newsroom with all public routes, paginated 12-story feeds, self-contained global CSS and newsroom integration.
 name: Deploy Masses Coalition website to GitHub Pages
 
 on:
