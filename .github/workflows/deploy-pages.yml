@@ -41,7 +41,6 @@ jobs:
           printf 'export const siteBasePath = "/massescoalitionfornigeria.github.io";\n' > src/lib/base-path.ts
           NEXT_PUBLIC_BASE_PATH=/massescoalitionfornigeria.github.io NEXT_BASE_PATH=/massescoalitionfornigeria.github.io npm run build
           grep -o 'href="/massescoalitionfornigeria.github.io[^"]*"' out/index.html | head -n 8
-          printf 'www.massescoalitionfornigeria.com\n' > out/CNAME
         env:
           SITE_URL: https://demtaiwo1-eng.github.io/massescoalitionfornigeria.github.io
       - name: Configure Pages
