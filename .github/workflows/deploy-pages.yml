@@ -1,4 +1,4 @@
-# Publish public newsroom, story, search, contact and access workflows.
+# Publish updated public newsroom, article search and cross-site secure sign-in workflows.
 name: Deploy Masses Coalition website to GitHub Pages
 
 on:
