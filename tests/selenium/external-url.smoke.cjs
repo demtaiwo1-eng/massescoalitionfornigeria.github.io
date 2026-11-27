@@ -29,12 +29,8 @@ async function main() {
     assert.equal(readyState, 'complete', 'The external page must finish loading');
     assert.ok(currentUrl.startsWith('http'), 'The browser must remain on an HTTP(S) URL');
 
-    const expectedBase = new URL(targetUrl).pathname.replace(/\\/$/, '');
-    const internalLinks = await driver.executeScript(`
-      return Array.from(document.querySelectorAll('a[href]'))
-        .map(anchor => anchor.href)
-        .filter(href => new URL(href).origin === location.origin);
-    `);
+    const expectedBase = new URL(targetUrl).pathname.replace(/\/$/, '');
+    const internalLinks = await driver.executeScript("return Array.from(document.querySelectorAll('a[href]')).map(anchor => anchor.href).filter(href => new URL(href).origin === location.origin);");
     const brokenLinks = internalLinks.filter(href => {
       const pathname = new URL(href).pathname;
       return pathname !== expectedBase && !pathname.startsWith(expectedBase + '/');
