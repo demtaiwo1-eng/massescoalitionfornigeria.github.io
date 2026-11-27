@@ -1,6 +1,8 @@
 name: Selenium external URL browser test
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       external_url:
