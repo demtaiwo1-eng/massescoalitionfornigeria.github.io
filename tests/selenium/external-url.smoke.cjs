@@ -29,7 +29,24 @@ async function main() {
     assert.equal(readyState, 'complete', 'The external page must finish loading');
     assert.ok(currentUrl.startsWith('http'), 'The browser must remain on an HTTP(S) URL');
 
-    console.log(JSON.stringify({ status: 'passed', targetUrl, currentUrl, title, readyState }, null, 2));
+    const expectedBase = new URL(targetUrl).pathname.replace(/\\/$/, '');
+    const internalLinks = await driver.executeScript(`
+      return Array.from(document.querySelectorAll('a[href]'))
+        .map(anchor => anchor.href)
+        .filter(href => new URL(href).origin === location.origin);
+    `);
+    const brokenLinks = internalLinks.filter(href => {
+      const pathname = new URL(href).pathname;
+      return pathname !== expectedBase && !pathname.startsWith(expectedBase + '/');
+    });
+    assert.deepEqual(brokenLinks, [], 'Internal links must stay under the GitHub Pages project path');
+
+    await driver.get(new URL(expectedBase + '/contact/', new URL(targetUrl).origin).href);
+    assert.ok((await driver.findElement({ css: 'form.contact-form' }).isDisplayed()), 'The contact form must render');
+    await driver.get(new URL(expectedBase + '/newsroom/sign-in/', new URL(targetUrl).origin).href);
+    assert.match(await driver.findElement({ css: 'h1' }).getText(), /Newsroom access/i, 'The newsroom sign-in page must render');
+
+    console.log(JSON.stringify({ status: 'passed', targetUrl, currentUrl, title, readyState, checkedInternalLinks: internalLinks.length }, null, 2));
   } finally {
     if (driver) await driver.quit();
   }
