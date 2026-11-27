@@ -1,7 +1,9 @@
 name: Selenium external URL browser test
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Deploy Masses Coalition website to GitHub Pages"]
+    types: [completed]
     branches: [main]
   workflow_dispatch:
     inputs:
@@ -19,7 +21,7 @@ concurrency:
 
 jobs:
   browser-smoke-test:
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
