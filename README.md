@@ -26,3 +26,5 @@ The homepage now displays a six-story preview from the 35 attributed IB Connect 
 
 
 News briefing images are sourced from the corresponding original IB Connect article pages and link back to those sources.
+
+The homepage and Source Desk display original IB Connect featured images for all 35 source briefs.
