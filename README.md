@@ -23,3 +23,6 @@ The homepage now displays a six-story preview from the 35 attributed IB Connect 
 - The public frontend is static; newsroom features depend on the separate Render API and Neon PostgreSQL database.
 - The custom domain `www.massescoalitionfornigeria.com` remains pending DNS and verification.
 - The source repository's README documents navigation, roles, Administrator controls, advanced access, hosting configuration, Android packaging requirements, pricing and known limitations.
+
+
+News briefing images are sourced from the corresponding original IB Connect article pages and link back to those sources.
