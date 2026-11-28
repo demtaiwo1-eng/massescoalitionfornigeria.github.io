@@ -1,5 +1,5 @@
 # Build the latest MCN newsroom with all public routes, source desk, reporter verification fields and editorial workflow.
-# Rebuild requested for source update 0f50b1e1a19630beb13b08e2b61b01ae72733df2.
+# Rebuild requested for source update 2301d44833e1c90abd8849fa87ba30f899608853.
 name: Deploy Masses Coalition website to GitHub Pages
 
 on:
