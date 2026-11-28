@@ -28,7 +28,7 @@ async function main() {
     report.homeTitle = await driver.getTitle();
     report.homeHeading = await driver.findElement(By.css('h1')).getText();
     assert.ok(report.homeTitle.trim(), 'Homepage must have a title');
-    assert.match(report.homeHeading, /News that puts\\s+people first/i, 'Homepage hero must render');
+    assert.match(report.homeHeading, /News that puts\s+people first/i, 'Homepage hero must render');
     report.homepageNewsCardCount = await driver.findElements(By.css('.home-source-card')).then(x=>x.length);
     assert.ok(report.homepageNewsCardCount >= 6, 'Homepage must show at least six source-desk news cards');
     assert.equal(await driver.findElement(By.css('.home-source-disclaimer')).isDisplayed(), true, 'Homepage must explain external-source verification status');
