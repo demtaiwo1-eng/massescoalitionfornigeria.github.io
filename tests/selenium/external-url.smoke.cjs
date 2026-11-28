@@ -28,7 +28,12 @@ async function main() {
     report.homeTitle = await driver.getTitle();
     report.homeHeading = await driver.findElement(By.css('h1')).getText();
     assert.ok(report.homeTitle.trim(), 'Homepage must have a title');
-    assert.match(report.homeHeading, /News that puts people first/i, 'Homepage hero must render');
+    assert.match(report.homeHeading, /News that puts\\s+people first/i, 'Homepage hero must render');
+    report.homepageNewsCardCount = await driver.findElements(By.css('.home-source-card')).then(x=>x.length);
+    assert.ok(report.homepageNewsCardCount >= 6, 'Homepage must show at least six source-desk news cards');
+    assert.equal(await driver.findElement(By.css('.home-source-disclaimer')).isDisplayed(), true, 'Homepage must explain external-source verification status');
+    report.homepageOriginalStoryLinks = await driver.findElements(By.css('.home-source-card a[href^="https://"]')).then(x=>x.length);
+    assert.ok(report.homepageOriginalStoryLinks >= 6, 'Homepage cards must link to their original publishers');
     assert.equal(await driver.executeScript('return document.readyState'), 'complete');
 
     const internalLinks = await driver.executeScript("return Array.from(document.querySelectorAll('a[href]')).map(a=>a.href).filter(h=>new URL(h).origin===location.origin)");
