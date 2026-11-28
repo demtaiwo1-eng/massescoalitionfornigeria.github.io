@@ -4,7 +4,7 @@ This repository publishes the MCN static frontend through GitHub Pages.
 
 - **Live website:** https://demtaiwo1-eng.github.io/massescoalitionfornigeria.github.io/
 - **Newsroom:** https://demtaiwo1-eng.github.io/massescoalitionfornigeria.github.io/newsroom/sign-in/
-- **Source Desk:** https://demtaiwo1-eng.github.io/massescoalitionfornigeria.github.io/source-desk/
+- **Explore News:** https://demtaiwo1-eng.github.io/massescoalitionfornigeria.github.io/source-desk/
 - **API health:** https://mcn-newsroom-api.onrender.com/health
 - **Application source and complete client handover guide:** https://github.com/demtaiwo1-eng/massescoalitionfornigeria/blob/main/README.md
 
@@ -16,7 +16,7 @@ After a successful Pages deployment, the **Selenium external URL browser test** 
 
 ## Homepage news presentation
 
-The homepage now opens with a news-first lead story, a large featured image and headline, a supporting top-stories column, and additional image-led stories. Story cards show category, publication date and source attribution, with direct links to the original publisher. A clear notice explains that IB Connect items are external-source summaries requiring independent verification, not original MCN reporting. The full 35-item list remains on the Source Desk. The separate Original MCN Reporting section continues to display only articles actually published by the newsroom.
+The homepage now displays all 35 collected news stories in its Explore News section, with images, headlines, summaries, categories, publication dates and links to the original articles. Publisher-specific branding has been removed from the MCN presentation. The stories remain distinct from original MCN newsroom publications and require independent editorial review before being represented as MCN reporting.
 
 ## Platform notes
 
@@ -25,6 +25,6 @@ The homepage now opens with a news-first lead story, a large featured image and 
 - The source repository's README documents navigation, roles, Administrator controls, advanced access, hosting configuration, Android packaging requirements, pricing and known limitations.
 
 
-News briefing images are sourced from the corresponding original IB Connect article pages and link back to those sources.
+News briefing images and article links remain connected to their respective original publication pages.
 
-The homepage and Source Desk display original IB Connect featured images for all 35 source briefs.
+The homepage and Explore News page display the available featured images for all 35 collected stories.
