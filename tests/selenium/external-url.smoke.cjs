@@ -35,6 +35,32 @@ async function main() {
     report.homepageOriginalStoryLinks = await driver.findElements(By.css('.home-source-card a[href^="https://"]')).then(x=>x.length);
     assert.ok(report.homepageOriginalStoryLinks >= 6, 'Homepage cards must link to their original publishers');
     assert.equal(await driver.executeScript('return document.readyState'), 'complete');
+    const homepageImages = await driver.executeAsyncScript(function(done) {
+      const images = Array.from(document.querySelectorAll('.home-source-card img'));
+      let index = 0;
+      const visitNext = () => {
+        if (index >= images.length) {
+          Promise.all(images.map(img => img.complete ? Promise.resolve() : new Promise(resolve => {
+            img.addEventListener('load', resolve, { once: true });
+            img.addEventListener('error', resolve, { once: true });
+            setTimeout(resolve, 10000);
+          }))).then(() => done({
+            count: images.length,
+            loaded: images.filter(img => img.complete && img.naturalWidth > 0).length,
+            broken: images.filter(img => img.complete && img.naturalWidth === 0).map(img => img.currentSrc || img.src)
+          }));
+          return;
+        }
+        images[index++].scrollIntoView({ block: 'center' });
+        setTimeout(visitNext, 120);
+      };
+      visitNext();
+    });
+    report.homepageImages = homepageImages;
+    assert.ok(homepageImages.count >= 6, 'Homepage news cards must include original source images');
+    assert.ok(homepageImages.loaded >= 5, 'At least five homepage source images must load in Chromium');
+    assert.equal(homepageImages.broken.length, 0, 'Homepage source images must not be broken');
+
 
     const internalLinks = await driver.executeScript("return Array.from(document.querySelectorAll('a[href]')).map(a=>a.href).filter(h=>new URL(h).origin===location.origin)");
     const brokenLinks = internalLinks.filter(h => {
@@ -49,6 +75,32 @@ async function main() {
     report.sourceDeskBriefCount = await driver.findElements(By.css('article')).then(x=>x.length);
     assert.match(report.sourceDeskHeading, /35 recent stories/i);
     assert.ok(report.sourceDeskBriefCount >= 35, 'Source Desk must render the curated 35 briefs');
+    const sourceDeskImages = await driver.executeAsyncScript(function(done) {
+      const images = Array.from(document.querySelectorAll('.source-brief-card img'));
+      let index = 0;
+      const visitNext = () => {
+        if (index >= images.length) {
+          Promise.all(images.map(img => img.complete ? Promise.resolve() : new Promise(resolve => {
+            img.addEventListener('load', resolve, { once: true });
+            img.addEventListener('error', resolve, { once: true });
+            setTimeout(resolve, 10000);
+          }))).then(() => done({
+            count: images.length,
+            loaded: images.filter(img => img.complete && img.naturalWidth > 0).length,
+            broken: images.filter(img => img.complete && img.naturalWidth === 0).map(img => img.currentSrc || img.src)
+          }));
+          return;
+        }
+        images[index++].scrollIntoView({ block: 'center' });
+        setTimeout(visitNext, 80);
+      };
+      visitNext();
+    });
+    report.sourceDeskImages = sourceDeskImages;
+    assert.ok(sourceDeskImages.count >= 30, 'Source Desk must display original images for most source briefs');
+    assert.ok(sourceDeskImages.loaded >= 28, 'At least 28 Source Desk images must load in Chromium');
+    assert.equal(sourceDeskImages.broken.length, 0, 'Source Desk source images must not be broken');
+
 
     await driver.get(page('/contact/'));
     report.contactFormVisible = await driver.findElement(By.css('form.contact-form')).isDisplayed();
