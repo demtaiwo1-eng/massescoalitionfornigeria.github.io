@@ -115,7 +115,7 @@ async function main() {
     report.registrationRoles = roleOptions;
     assert.deepEqual(roleOptions, ['Reporter','Contributor','News Editor','Managing Editor']);
     const password = await driver.findElement(By.css('input[type="password"]'));
-    report.minimumPasswordLength = Number(await password.getAttribute('min'));
+    report.minimumPasswordLength = Number(await password.getAttribute('minlength'));
     assert.ok(report.minimumPasswordLength >= 14, 'Registration password must require at least 14 characters');
     report.administratorRoleNotPublic = !roleOptions.some(x=>/administrator|publisher/i.test(x));
 
