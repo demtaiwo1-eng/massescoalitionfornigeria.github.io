@@ -28,3 +28,6 @@ The homepage now displays all 35 collected news stories in its Explore News sect
 News briefing images and article links remain connected to their respective original publication pages.
 
 The homepage and Explore News page display the available featured images for all 35 collected stories.
+
+
+Homepage refresh: denser newsroom front page with lead story, headlines briefing, developing-news ticker, category navigation and the complete story grid.
