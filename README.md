@@ -16,7 +16,7 @@ After a successful Pages deployment, the **Selenium external URL browser test** 
 
 ## Homepage news presentation
 
-The homepage now displays a six-story preview from the 35 attributed IB Connect source briefs, with category, date, editorial-status labels and direct links to the original publisher. A clear notice explains that these are external-source summaries requiring independent verification, not original MCN reporting. The full 35-item list remains on the Source Desk. The separate Original MCN Reporting section continues to display only articles actually published by the newsroom.
+The homepage now opens with a news-first lead story, a large featured image and headline, a supporting top-stories column, and additional image-led stories. Story cards show category, publication date and source attribution, with direct links to the original publisher. A clear notice explains that IB Connect items are external-source summaries requiring independent verification, not original MCN reporting. The full 35-item list remains on the Source Desk. The separate Original MCN Reporting section continues to display only articles actually published by the newsroom.
 
 ## Platform notes
 
